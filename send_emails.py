@@ -18,16 +18,30 @@ load_dotenv(envars)
 sender_email = os.getenv("EMAIL")
 sender_password = os.getenv("PASSWORD")
 
-def send_email(receiver_email, subject, body):
+def send_email(receiver_email, subject, name):
     message =  EmailMessage()
     message["Subject"] = subject
-    message["From"] = formataddr(("Devina", f{sender_email}))
+    message["From"] = formataddr(("Devina", f"{sender_email}"))
     message["To"] = receiver_email
     message.set_content(
         f"""\
+        Dear {name},
         hope this email finds you well.
         warm regards, 
         devina
         """
     )
+    with smtplib.SMTP(SMTP_SERVER, PORT) as server:
+        server.starttls()
+        server.login(sender_email, sender_password)
+        server.sendmail(sender_email, receiver_email, message.as_string())
+        print("Email sent successfully")
+    
+    if __name__ == "__main__":
+        send_email(
+            subject="Test email",
+            name = "devina",
+            receiver_email="db133@snu.edu.in"
+        )
+                   
 
