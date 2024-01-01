@@ -18,6 +18,7 @@ load_dotenv(envars)
 sender_email = os.getenv("EMAIL")
 sender_password = os.getenv("PASSWORD")
 
+
 def send_email(receiver_email, subject, name):
     message =  EmailMessage()
     message["Subject"] = subject
@@ -37,11 +38,11 @@ def send_email(receiver_email, subject, name):
         server.sendmail(sender_email, receiver_email, message.as_string())
         print("Email sent successfully")
     
-    if __name__ == "__main__":
-        send_email(
-            subject="Test email",
-            name = "devina",
-            receiver_email="db133@snu.edu.in"
-        )
+if __name__ == "__main__":
+    send_email(
+        subject="Test email",
+        name = "divyansh",
+        receiver_email="ds192@snu.edu.in"
+    )
                    
 
