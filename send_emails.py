@@ -26,7 +26,7 @@ def send_email(receiver_emails, subject, name):
     message["To"] = ", ".join(receiver_emails)
     message.set_content(
         f"""\
-Dear {name},
+Hey {name},
 It's time for another NeetCode150 question!
 Today's question is:
 https://leetcode.com/problems/valid-parentheses/
